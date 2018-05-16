@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import svgToComplex from "svg-mesh-3d";
-import { Object } from "plateau";
+import { Object } from "./plateau";
 import threeSimplicialComplex from "three-simplicial-complex";
 
 import CharacterGui from "./character";
@@ -110,8 +110,8 @@ export default class Letter extends Object {
       } else {
         const oMin = fMin * distance + offset;
         const oMax = fMax * distance + offset;
-        const dMin = oMin - stretch;
-        const dMax = oMax + stretch;
+        const dMin = oMin - stretch + offset;
+        const dMax = oMax + stretch + offset;
 
         vertex.x = (dMax - dMin) / (oMax - oMin) * original.x;
       }

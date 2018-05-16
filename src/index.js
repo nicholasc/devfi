@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import { Engine } from "plateau";
+import { Engine } from "./plateau";
 import TextToSvg from "text-to-svg";
 
 import Letter from "./letter";

@@ -1,4 +1,4 @@
-import { GuiObject } from "plateau";
+import { GuiObject } from "./plateau";
 
 export default class TransformationsGui extends GuiObject {
   /** a reference to the parent letter instance */
