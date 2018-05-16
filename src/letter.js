@@ -91,32 +91,37 @@ export default class Letter extends Object {
   };
 
   transformationsX = () => {
+    // get local copies of what we need
+    const {
+      offset,
+      stretch,
+      distance,
+      separations
+    } = this.gui.transformations;
+    const [fMin, fMax] = separations;
+
+    // iterate vertices and apply X axis transformations
     this.geometry.vertices.map((vertex, i) => {
       const original = this.originalGeometry.vertices[i];
 
-      const {
-        offset,
-        stretch,
-        distance,
-        separations
-      } = this.gui.transformations;
-
-      const [fMin, fMax] = separations;
-
+      // apply basic strech when outside the min/max distance
       if (original.x <= fMin * distance + offset) {
         vertex.x = original.x - stretch;
       } else if (original.x >= fMax * distance + offset) {
         vertex.x = original.x + stretch;
       } else {
+        // calculate origin & destination max/min
         const oMin = fMin * distance + offset;
         const oMax = fMax * distance + offset;
         const dMin = oMin - stretch + offset;
         const dMax = oMax + stretch + offset;
 
+        // interpolate distance to smooth the vertices
         vertex.x = (dMax - dMin) / (oMax - oMin) * original.x;
       }
     });
 
+    // marks vertices for re-render
     this.geometry.verticesNeedUpdate = true;
   };
 }
