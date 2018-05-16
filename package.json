@@ -1,13 +1,13 @@
 {
-  "name": "font-challenge",
+  "name": "devfi",
   "version": "1.0.0",
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "electron app",
+    "electron": "electron app",
     "dev": "webpack --mode development --watch",
     "build": "webpack --mode production",
-    "rebuild": "electron-builder install-app-deps"
+    "start": "concurrently \"yarn dev\" \"yarn electron\""
   },
   "dependencies": {
     "svg-mesh-3d": "^1.1.0",
@@ -20,6 +20,7 @@
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-flow": "^6.23.0",
+    "concurrently": "^3.5.1",
     "electron": "^2.0.0",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.14"
